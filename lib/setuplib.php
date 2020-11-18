@@ -900,7 +900,10 @@ function initialise_fullme() {
 
     // hopefully this will stop all those "clever" admins trying to set up moodle
     // with two different addresses in intranet and Internet
-    if (!empty($CFG->reverseproxy) && $rurl['host'] === $wwwroot['host']) {
+    // ### Following line commented By CP ### //                                                                                                  
+    // if (!empty($CFG->reverseproxy) && $rurl['host'] === $wwwroot['host']) {   
+    // ### Following line added By CP, as suggested here: https://moodle.org/mod/forum/discuss.php?d=388076#p1564638 ### //                                                                                                  
+    if (!empty($CFG->reverseproxy) && $rurl['host'] === $wwwroot['host'] && (empty($wwwroot['port']) || $rurl['port'] === $wwwroot['port'])) {
         print_error('reverseproxyabused', 'error');
     }
 
