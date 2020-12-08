@@ -89,6 +89,18 @@ class postgres_sql_generator extends sql_generator {
         return array("ALTER SEQUENCE $this->prefix{$tablename}_id_seq RESTART WITH $value");
     }
 
+    public function getAlterSequenceRangeSQL($tableNames) {
+        $dbKeySequenceStart = getenv('DB_PK_SEQ_START');
+        $dbKeySequenceMax = getenv('DB_PK_SEQ_MAX');
+        $results = array();
+        if (!empty($tableNames) && !empty($dbKeySequenceStart) && !empty($dbKeySequenceMax)) {
+            foreach ($tableNames as $tableName) {
+                array_push($results,"ALTER SEQUENCE IF EXISTS {$tableName}_id_seq RESTART WITH $dbKeySequenceStart MAXVALUE $dbKeySequenceMax");  
+            }
+        }
+        return $results;
+    }
+
     /**
      * Given one correct xmldb_table, returns the SQL statements
      * to create temporary table (inside one array).
