@@ -430,7 +430,6 @@ class database_manager {
         $alterSequenceSqlArray = $this->generator->getAlterSequenceRangeSQL($tableNamesToCreate);
         
         if (!empty($alterSequenceSqlArray)){
-            print_r($alterSequenceSqlArray);
             $this->execute_sql_arr($alterSequenceSqlArray);
         }
 
