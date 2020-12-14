@@ -254,21 +254,6 @@ abstract class sql_generator {
         return $results;
     }
 
-    public function getTableNamesToCreate($xmldb_structure) {
-        $results = array();
-
-        if ($tables = $xmldb_structure->getTables()) {
-            foreach ($tables as $table) {
-                // print(var_dump($table));
-                // print($table->getName())
-                // print_r($this->getTableName($table));
-                array_push($results,$this->getTableName($table));  
-            }
-        }
-
-        return $results;
-    }
-
     /**
      * Given one xmldb_table, this returns it's correct name, depending of all the parameterization.
      * eg: This appends $prefix to the table name.

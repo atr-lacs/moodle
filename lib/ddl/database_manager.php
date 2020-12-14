@@ -425,15 +425,6 @@ class database_manager {
             }
         }
         $this->execute_sql_arr($sqlarr, $tablenames);
-        
-        $tableNamesToCreate = $this->generator->getTableNamesToCreate($xmldb_structure);
-        $alterSequenceSqlArray = $this->generator->getAlterSequenceRangeSQL($tableNamesToCreate);
-        
-        if (!empty($alterSequenceSqlArray)){
-            print_r($alterSequenceSqlArray);
-            $this->execute_sql_arr($alterSequenceSqlArray);
-        }
-
     }
 
     /**
