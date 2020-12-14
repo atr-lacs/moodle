@@ -259,6 +259,9 @@ abstract class sql_generator {
 
         if ($tables = $xmldb_structure->getTables()) {
             foreach ($tables as $table) {
+                // print(var_dump($table));
+                // print($table->getName())
+                // print_r($this->getTableName($table));
                 array_push($results,$this->getTableName($table));  
             }
         }
